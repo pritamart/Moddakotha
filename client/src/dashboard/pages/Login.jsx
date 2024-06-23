@@ -29,7 +29,9 @@ const Login = () => {
     
     try {
       setLoader(true);
+      // const { data } = await axios.post(`${base_url}/api/login`, state);
       const { data } = await axios.post(`${base_url}/api/login`, state);
+      // const { data } = await axios.post(`http://192.250.226.157:3001/api/login`, state);
       setLoader(false);
       localStorage.setItem('newsToken', data.token)
       toast.success(data.message)
