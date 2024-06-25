@@ -11,11 +11,15 @@ dotenv.config();
 app.use(body_parser.json())
 
 if (process.env.mode === "production") {
-  app.use(cors())
+  app.use(cors(
+    {
+      origin: "http://192.250.226.157:3000",
+    }
+  ))
 } else {
   app.use(
     cors({
-      origin: "*",
+      origin: "http://localhost:3000",
     })
   );
 }
