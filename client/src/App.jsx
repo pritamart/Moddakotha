@@ -29,7 +29,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Layout />}>
         <Route path="/" element={<NewsWall />}/>
-        <Route path="/sports" element={<SportsNews />}/>
+        <Route path="/news/category/Sports" element={<SportsNews />}/>
         </Route>
 
 

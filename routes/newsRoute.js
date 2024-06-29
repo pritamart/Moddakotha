@@ -13,5 +13,10 @@ router.get('/api/news',middleware.auth,newsControllers.get_dashboard_news)
 router.get('/api/news/:news_id',middleware.auth,newsControllers.get_dashboard_single_news)
 
 
+// website //
+// router.get('/api/all/news',middleware.auth,newsControllers.get_all_news)
+router.get('/api/all/news',newsControllers.get_all_news)
+
+
 
 module.exports = router

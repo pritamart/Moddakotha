@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from "../components/img/logo.png";
 import { base_url } from "../../config/config";
 import axios from "axios";
-import {useNavigate} from 'react-router-dom'
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 import StoreContext from "../../context/storeContext";
 
 const Login = () => {
 
-  const navigate = useNavigate()
-  const {dispatch} = useContext(StoreContext)
+  const navigate = useNavigate();
+  const { dispatch } = useContext(StoreContext);
   const [loder, setLoader] = useState(false);
 
   const [state, setState] = useState({
@@ -29,23 +29,21 @@ const Login = () => {
     
     try {
       setLoader(true);
-      // const { data } = await axios.post(`${base_url}/api/login`, state);
       const { data } = await axios.post(`${base_url}/api/login`, state);
-      // const { data } = await axios.post(`http://192.250.226.157:3001/api/login`, state);
       setLoader(false);
-      localStorage.setItem('newsToken', data.token)
-      toast.success(data.message)
-        dispatch({
+      localStorage.setItem('newsToken', data.token);
+      toast.success(data.message);
+      dispatch({
         type: "login_sucess",
         payload: { 
           token: data.token
         }
-      })
+      });
 
-      navigate('/dashboard')
+      navigate('/dashboard');
     } catch (error) {
       setLoader(false);
-      toast.error(error.response.data.message) ///cheking 
+      toast.error(error.response.data.message);
     }
   };
 
@@ -54,7 +52,9 @@ const Login = () => {
       <div className="w-[340px] text-slate-600 shadow-md">
         <div className="bg-white h-ful px-7 py-8 rounded-md">
           <div className="w-full justify-center items-center flex">
-            <img className="w-[200px]" src={Logo} alt="Moddakotha logo" />
+            <Link to="/">
+              <img className="w-[200px]" src={Logo} alt="Moddakotha logo" />
+            </Link>
           </div>
           <form onSubmit={submit} className="mt-8">
             <div className="flex flex-col gap-y-2">
@@ -102,7 +102,7 @@ const Login = () => {
                 className="px-3 py-[6px] w-full bg-indigo-500 rounded-lg
                text-white hover:bg-indigo-600"
               >
-                {loder ? "Loding..." : "Login"}
+                {loder ? "Loading..." : "Login"}
               </button>
             </div>
           </form>

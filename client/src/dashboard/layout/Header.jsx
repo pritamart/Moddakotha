@@ -20,7 +20,7 @@ const Header = () => {
               <span>{store.userInfo?.role}</span>
 
             </div>
-            <img  className='w-10 h-10' src={profile}  srcSet="" />
+            <img  className='w-10 h-10' src={profile}  srcSet="" alt=""/>
           </div>
         </div>
       </div>

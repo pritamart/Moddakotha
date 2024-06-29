@@ -14,7 +14,7 @@ const Category = ({ categories, titlestyle }) => {
       >
         {[1, 2, 3, 4, 5, 6].map((category, i) => (
           <li className="p-2 list-none" key={i}>
-            <Link href={'#'}>Category {i+1}</Link>
+            <Link to={'#'}>Category {i+1}</Link>
           </li>
         ))}
       </div>

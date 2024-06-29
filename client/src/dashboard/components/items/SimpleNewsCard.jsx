@@ -12,7 +12,7 @@ const SimpleNewsCard = ({ item, type }) => {
         >
           <img
             className="object-cover w-full h-full"
-            src="https://res.cloudinary.com/dpj4vsqbo/image/upload/v1696951679/news/btbfqrvjqhso6n842reb.jpg"
+            src={item.image}
             alt="Travel Image"
           />
         </div>
@@ -34,14 +34,14 @@ const SimpleNewsCard = ({ item, type }) => {
           bg-[#c80000]"
         >
           {" "}
-          ভ্রমণ
+          {item.category}
         </div>
         <h2 className="text-xl">
-          দূষণের জেরে সুন্দরবনের ম্যানগ্রোভ অরণ্যের বিস্তর ক্ষতি হচ্ছে।
+          {item.title}
         </h2>
         <div className="flex gap-x-2 text-sm font-normal">
-          <span> 09 May 2024</span>
-          <span>Sanket Dhar</span>
+          <span>{item.date}</span>
+          <span>{item.writerName}</span>
         </div>
       </div>
     </div>
