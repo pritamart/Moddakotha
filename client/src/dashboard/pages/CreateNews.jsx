@@ -41,7 +41,6 @@ const CreateNews = () => {
         },
       });
       setLoader(false);
-      console.log(data);
       toast.success(data.message);
     } catch (error) {
       setLoader(false);
@@ -59,7 +58,6 @@ const CreateNews = () => {
           Authorization: `Bearer ${store.token}`,
         },
       });
-      console.log(data.images)
       setImages(data.images)
     } catch (error) {
       console.log(error)
@@ -73,7 +71,7 @@ const CreateNews = () => {
     const files = e.target.files
     try {
       const formData = new FormData()
-      console.log(files.length)
+      // console.log(files.length)
       for(let i = 0;i < files.length; i++){
         formData.append('images',files[i])
       }

@@ -20,7 +20,6 @@ const NewsWall = () => {
       try {
         const { data } = await axios.get(`${base_url}/api/all/news`);
         setNews(data.news);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching news:", error);
       }

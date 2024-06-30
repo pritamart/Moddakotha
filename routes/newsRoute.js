@@ -16,6 +16,7 @@ router.get('/api/news/:news_id',middleware.auth,newsControllers.get_dashboard_si
 // website //
 // router.get('/api/all/news',middleware.auth,newsControllers.get_all_news)
 router.get('/api/all/news',newsControllers.get_all_news)
+router.get('/api/category/all',newsControllers.get_categories)
 
 
 
