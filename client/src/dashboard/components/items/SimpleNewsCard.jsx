@@ -22,7 +22,7 @@ const SimpleNewsCard = ({ item, type }) => {
         className="w-full h-full block absolute left-0 top-0 invisible 
       group-hover:visible bg-white cursor-pointer opacity-5 transition-all
       duration-300"
-        to={"#"}
+        to={`/news/${item?.slug}`}
       />
 
       <div
@@ -31,14 +31,16 @@ const SimpleNewsCard = ({ item, type }) => {
       >
         <div
           className="px-[6px] py-[2px] rounded-sm text-[13px]
-          bg-[#c80000]"
+          bg-[#c80000]" 
         >
           {" "}
           {item.category}
         </div>
-        <h2 className="text-xl">
+        <Link to={`/news/${item?.slug}`}>
+        <h2 className="text-xl" >
           {item.title}
         </h2>
+        </Link>
         <div className="flex gap-x-2 text-sm font-normal">
           <span>{item.date}</span>
           <span>{item.writerName}</span>

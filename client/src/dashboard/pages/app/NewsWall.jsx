@@ -125,7 +125,7 @@ const NewsWall = () => {
           </div>
         </div>
       </main>
-      <Footer news={news["Technology"]} />
+      {/* <Footer news={news["Technology"]} /> */}
     </div>
   );
 };

@@ -41,7 +41,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
       </div>
       <div className="p-5">
         <Link
-          to={`/news/${news?.title}`}
+          to={`/news/${news?.slug}`}
           className="text-[15px] font-semibold text-[#333333] hover:text-[#c80000]"
         >
           {news?.title}

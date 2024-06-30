@@ -29,7 +29,8 @@ function App() {
         <Routes>
         <Route path="/" element={<Layout />}>
         <Route path="/" element={<NewsWall />}/>
-        <Route path="/news/category/Sports" element={<SportsNews />}/>
+        <Route path="/news/:slug" element={<SportsNews />}/>
+        {/* <Route path="/news/category/Sports" element={<SportsNews />}/> */}
         </Route>
 
 

@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Category from "./items/Category";
 import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
+import axios from "axios";
+import { base_url } from "../../config/config";
+
 
 const Footer = ({news}) => {
+  const location = useLocation();
+  const path = location.pathname;
+  const [categories, setCategories] = useState([]);
+  const [show, setShow] = useState(false);
+  const [cateShow, setCateShow] = useState(false);
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(`${base_url}/api/category/all`);
+      setCategories(response.data.categories || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <div className="w-full bg-[#1e1919]">
       <div className="px-4 md:px-8 py-10 gap-12 grid lg:grid-cols-4 grid-cols-1">
-        <div className="flex flex-col gap-y-[14px]">
+        <div className="flex flex-col gap-y-[14px] items-center justify-center">
           <div className="relative h-[75px] w-[200px]">
             <img src={Logo} alt="Logo" className="object-contain" />
           </div>
-          <h4 className="text-slate-300 font-semibold">
+          <h4 className="text-slate-300 font-semibold text-center">
             ‘মোদ্দাকথা’ নামটি শুধুমাত্র সংবাদ মাধ্যমের জন্য আমরা যে নাম দিয়েছি
             তা নয়, আমরা এই নামটি দিয়েছি সমাজের প্রতিটি কোণ, প্রতিটি শ্রেণি,
             প্রতিটি পদক্ষেপকে ফোকাস করার জন্য। আমরা সত্য উপস্থাপন করতে সর্বদা

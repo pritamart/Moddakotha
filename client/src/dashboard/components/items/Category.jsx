@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { base_url } from "../../../config/config";
+import axios from "axios";
 
-const Category = ({ categories, titlestyle }) => {
+
+const Category = ({ titlestyle }) => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    try {
+      const categories = await axios.get(`${base_url}/api/category/all`);
+      setCategories(categories.data.categories || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <div className="w-full gap-y-[14px]">
       <div
@@ -12,9 +29,9 @@ const Category = ({ categories, titlestyle }) => {
       <div
         className={`flex- flex-col justify-start items-start gap-y-3 ${titlestyle} pt-3`}
       >
-        {[1, 2, 3, 4, 5, 6].map((category, i) => (
-          <li className="p-2 list-none" key={i}>
-            <Link to={'#'}>Category {i+1}</Link>
+        {categories && categories.length > 0 && categories.map((item, i) => (
+          <li className="list-none" key={i}>
+            <Link href="#">{item.category} ({item.count})</Link>
           </li>
         ))}
       </div>
