@@ -14,6 +14,9 @@ import Profile from "./dashboard/pages/Profile";
 import WriterIndex from "./dashboard/pages/WriterIndex";
 import CreateNews from "./dashboard/pages/CreateNews";
 import Edit_news from "./dashboard/pages/Edit_news";
+import Layout from "./dashboard/pages/app/Layout";
+import NewsWall from "./dashboard/pages/app/NewsWall";
+import SportsNews from "./dashboard/pages/app/SportsNews";
 
 function App() {
   const userInfo = {
@@ -24,6 +27,16 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<NewsWall />}/>
+        <Route path="/news/:slug" element={<SportsNews />}/>
+        {/* <Route path="/news/category/Sports" element={<SportsNews />}/> */}
+        </Route>
+
+
+
+
+          
           <Route path="/login" element={<Login />} />
 
           <Route path="/dashboard" element={<ProtectDashboatd />}>
