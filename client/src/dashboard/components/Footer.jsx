@@ -5,6 +5,8 @@ import Category from "./items/Category";
 import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../../config/config";
+import Gallery from "./items/Gallery";
+import RecentNews from "./items/RecentNews";
 
 
 const Footer = ({news}) => {
@@ -45,23 +47,8 @@ const Footer = ({news}) => {
             moddhakotha@gmail.com
           </h4>
         </div>
-
-        <div className="flex flex-col gap-y-[14px]">
-          <div className="text-xl font-bold text-white relative pl-3 before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:-left-0">
-            Gallery
-          </div>
-          <div className="grid grid-cols-3 gap-2 mt-12">
-            {news?.map((img, i) => (
-              <div className="relative h-[90px] w-full" key={i}>
-                <img
-                  src={img.image}
-                  alt="Gallery Image"
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      <Gallery />
+      
 
         <div>
           <Category categories={[]} titlestyle="text-white" />
@@ -72,7 +59,7 @@ const Footer = ({news}) => {
             Recent News
            
           </div>
-          <div className="grid grid-cols-1 gap-y-4 pt-3">
+          {/* <div className="grid grid-cols-1 gap-y-4 pt-3">
             {news?.map((r, i) => (
               <Link key={i} to={"#"} className="flex w-full">
                 <div className="group relative overflow-hidden w-[90px] h-[75px]">
@@ -96,7 +83,8 @@ const Footer = ({news}) => {
                 </div>
               </Link>
             ))}
-          </div>
+          </div> */}
+          <RecentNews />
         </div>
       </div>
 

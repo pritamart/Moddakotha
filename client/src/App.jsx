@@ -17,6 +17,7 @@ import Edit_news from "./dashboard/pages/Edit_news";
 import Layout from "./dashboard/pages/app/Layout";
 import NewsWall from "./dashboard/pages/app/NewsWall";
 import SportsNews from "./dashboard/pages/app/SportsNews";
+import CategoryNews from "./dashboard/pages/app/CategoryNews";
 
 function App() {
   const userInfo = {
@@ -30,7 +31,8 @@ function App() {
         <Route path="/" element={<Layout />}>
         <Route path="/" element={<NewsWall />}/>
         <Route path="/news/:slug" element={<SportsNews />}/>
-        {/* <Route path="/news/category/Sports" element={<SportsNews />}/> */}
+        <Route path="news/category/:category" element={<CategoryNews />}/>
+
         </Route>
 
 

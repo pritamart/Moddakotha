@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import SimpleNewsCard from "./SimpleNewsCard";
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import axios from "axios";
+import { base_url } from "../../../config/config";
 
-const LatestNews = ({ news }) => {
+const LatestNews = () => {
+  const [latestNews, setLatestNews] = useState([]);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -24,6 +27,18 @@ const LatestNews = ({ news }) => {
     },
   };
 
+  useEffect(() => {
+    const fetchLatestNews = async () => {
+      try {
+        const { data } = await axios.get(`${base_url}/api/latest/news`);
+        setLatestNews(data.news);
+      } catch (error) {
+        console.error("Error fetching latest news:", error);
+      }
+    };
+    fetchLatestNews();
+  }, []);
+
   const ButtonGroup = ({ next, previous }) => {
     return (
       <div className="flex justify-between items-center">
@@ -31,18 +46,28 @@ const LatestNews = ({ news }) => {
           তাজা খবর
         </div>
         <div className="flex justify-center items-center gap-x-3">
-          <button onClick={() => previous()} className="w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200">
-            <span> <FiChevronLeft /> </span>
+          <button
+            onClick={() => previous()}
+            className="w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200"
+          >
+            <span>
+              <FiChevronLeft />
+            </span>
           </button>
-          <button onClick={() => next()} className="w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200">
-            <span> <FiChevronRight /> </span>
+          <button
+            onClick={() => next()}
+            className="w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200"
+          >
+            <span>
+              <FiChevronRight />
+            </span>
           </button>
         </div>
       </div>
     );
   };
 
-  if (!news || news.length === 0) {
+  if (!latestNews || latestNews.length === 0) {
     return <div>Loading...</div>; // or any placeholder content you want
   }
 
@@ -57,7 +82,7 @@ const LatestNews = ({ news }) => {
         infinite={true}
         transitionDuration={500}
       >
-        {news.map((item, i) => (
+        {latestNews.map((item, i) => (
           <SimpleNewsCard item={item} key={i} type="latest" />
         ))}
       </Carousel>

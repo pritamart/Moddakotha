@@ -290,6 +290,43 @@ get_popular_news = async (req, res) => {
       return res.status(500).json({ message: 'Internal server error' })
   }
 }
+get_latest_news = async (req, res) => {
+  try {
+      const news = await newsModel.find({ status: 'active' }).sort({ createdAt: -1 }).limit(6)
+
+      return res.status(200).json({ news })
+  } catch (error) {
+      console.log(error.message)
+      return res.status(500).json({ message: 'Internal server error' })
+  }
+}
+get_images_news = async (req, res) => {
+  try {
+      const images = await newsModel.aggregate([
+          {
+              $match: {
+                  status: 'active'
+              }
+          },
+          {
+              $sample: {
+                  size: 12
+              }
+          },
+          {
+              $project: {
+                  image: 1
+              }
+          }
+      ])
+      // console.log(images)
+      return res.status(200).json({ images })
+  } catch (error) {
+      console.log(error.message)
+      return res.status(500).json({ message: 'Internal server error' })
+  }
+}
+
   
 }
 
