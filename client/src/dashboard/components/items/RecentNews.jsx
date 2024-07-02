@@ -32,9 +32,12 @@ const RecentNews = () => {
       </div>
     </div>
     <div className="flex flex-col gap-y-1 w-[calc(100%-90px)] pl-2">
-      <h2 className="text-xs font-semibold text-white hover:text-[#c80000]">
+      <Link to={`/news/${r?.slug}`}>
+      
+      <h2  className="text-xs font-semibold text-white hover:text-[#c80000]">
         {r.title}
       </h2>
+      </Link>
       <div className="flex gap-x-2 text-xs font-normal text-white">
         <span>{r.date}</span>
         <span>{r.writerName}</span>

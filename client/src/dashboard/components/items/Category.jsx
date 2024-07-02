@@ -31,7 +31,7 @@ const Category = ({ titlestyle }) => {
       >
         {categories && categories.length > 0 && categories.map((item, i) => (
           <li className="list-none" key={i}>
-            <Link href="#">{item.category} ({item.count})</Link>
+            <Link to={`/news/category/${item?.category}`}>{item.category} ({item.count})</Link>
           </li>
         ))}
       </div>

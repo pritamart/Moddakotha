@@ -9,7 +9,7 @@ import Gallery from "./items/Gallery";
 import RecentNews from "./items/RecentNews";
 
 
-const Footer = ({news}) => {
+const Footer = () => {
   const location = useLocation();
   const path = location.pathname;
   const [categories, setCategories] = useState([]);
@@ -87,7 +87,6 @@ const Footer = ({news}) => {
           <RecentNews />
         </div>
       </div>
-
       <div className="w-full bg-[#262323]">
         <div className="px-4 md:px-8 py-5 flex flex-col md:flex-row gap-3 justify-between items-center">
           <div className="flex flex-col md:flex-row gap-y-2 md:gap-x-2 text-gray-400 justify-start items-center">
