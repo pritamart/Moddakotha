@@ -17,7 +17,7 @@ router.get('/api/all/news', newsControllers.get_all_news);
 router.get('/api/popular/news', newsControllers.get_popular_news);
 router.get('/api/latest/news', newsControllers.get_latest_news);
 router.get('/api/images/news_gallery', newsControllers.get_images_news);
-router.get('/api/categorynews/news', newsControllers.get_images_news);
+router.get('/api/categorynews/news/:category', newsControllers.get_categorynews);
 
 router.get('/api/details/news/:slug', newsControllers.get_news);
 router.get('/api/category/all', newsControllers.get_categories);
