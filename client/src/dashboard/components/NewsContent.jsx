@@ -67,6 +67,20 @@ const NewsContent = () => {
     id : '',
     loader : false
   })
+  const delete_status = async (news_id) => {
+    try {
+      const { data } = await axios.delete(`${base_url}/api/news/delete/${news_id}`, {
+        headers: {
+          Authorization: `Bearer ${store.token}`,
+        },
+      });
+      get_news();
+      toast.success(data.message);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
   const update_status = async (status, news_id) => {
     try {
       set_res(
@@ -232,7 +246,10 @@ const NewsContent = () => {
                           >
                             <FaEdit />
                           </Link>
-                          <Link className="p-[6px] bg-red-500 rounded hover:shadow-lg hover:shadow-red-500/50">
+                          <Link 
+                          // to={`/dashboard/news/delete/${n._id}`}
+                          onClick={() => delete_status(n._id)}
+                          className="p-[6px] bg-red-500 rounded hover:shadow-lg hover:shadow-red-500/50">
                             <FaTrash />
                           </Link>
                         </>

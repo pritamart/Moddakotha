@@ -128,6 +128,19 @@ class newsController {
       return res.status(500).json({ message: "Internal server error" });
     }
   };
+  delete_news = async (req, res) => {
+    const { news_id } = req.params;
+    try {
+      const news = await newsModel.findByIdAndDelete(news_id);
+      if (!news) {
+        return res.status(404).json({ message: "News not found" });
+      }
+      return res.status(200).json({ message: "News deleted successfully" });
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  };
   update_news = async (req, res) => {
     const { news_id } = req.params;
     const { id, name } = req.userInfo;
