@@ -70,10 +70,10 @@ const CategoryNews = () => {
                       <Title title="Recent news" />
                     </div>
                     <div className="grid grid-cols-1 gap-y-4 pt-3">
-                      {latestNews?.slice(0, 6).map((r, i) => (
+                      {latestNews?.slice(0, 10).map((r, i) => (
                         <div key={i} className="shadow-sm p-4">
                           <Link to={`/news/${r?.slug}`} className="flex w-full">
-                            <div className="group relative overflow-hidden w-[90px] h-[75px]">
+                            <div className="group relative overflow-hidden w-[110px] h-[100px]">
                               <div className="w-full h-full group-hover:scale-[1.1] transition-all duration-[1s] relative">
                                 <img
                                   src={r.image}
@@ -85,8 +85,11 @@ const CategoryNews = () => {
                               </div>
                             </div>
                             <div className="flex flex-col gap-y-1 w-[calc(100%-90px)] pl-2">
+                              <div className="px-[6px] py-[2px] font-bold text-[#c80000]">
+                                {r?.category}
+                              </div>
                               <h2 className="text-xs font-semibold hover:text-[#c80000]">
-                                {r.title}
+                                {r.title.substring(0,90)+"..."}
                               </h2>
                               <div className="flex gap-x-2 text-xs font-normal">
                                 <span>{r.date}</span>

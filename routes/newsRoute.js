@@ -23,5 +23,5 @@ router.get('/api/categorynews/news/:category', newsControllers.get_categorynews)
 
 router.get('/api/details/news/:slug', newsControllers.get_news);
 router.get('/api/category/all', newsControllers.get_categories);
-
+router.get('/api/search/news', newsControllers.news_search)
 module.exports = router;

@@ -35,7 +35,7 @@ const SportsNews = () => {
     <div>
       <div className="bg-white shadow-sm py-4">
         <div className="px-4 md:px-8 w-full">
-          <Breadcrumb one={newsData?.category} two={newsData?.title} />
+          <Breadcrumb one={newsData?.category} two={newsData?.title.substring(0,50)+"..."} />
         </div>
       </div>
       <div className="bg-slate-200 w-full">

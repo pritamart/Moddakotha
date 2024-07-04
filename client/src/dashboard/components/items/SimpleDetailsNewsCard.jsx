@@ -31,9 +31,9 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
         <div
           className="left-5 absolute bottom-4 flex justify-start items-start gap-x-2 text-white font-semibold"
         >
-          <div className="px-[6px] py-[2px] rounded-sm text-[13px] bg-[#c80000]">
+          {/* <div className="px-[6px] py-[2px] rounded-sm text-[13px] bg-[#c80000]">
             জনপ্রিয় খবর
-          </div>
+          </div> */}
           <div className="px-[6px] py-[2px] rounded-sm text-[13px] bg-[#c80000]">
             {news?.category}
           </div>
