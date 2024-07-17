@@ -18,6 +18,8 @@ import Layout from "./dashboard/pages/app/Layout";
 import NewsWall from "./dashboard/pages/app/NewsWall";
 import SportsNews from "./dashboard/pages/app/SportsNews";
 import CategoryNews from "./dashboard/pages/app/CategoryNews";
+import SearchNews from "./dashboard/components/news/SearchNews";
+import SearchValue from "./dashboard/components/items/SearchValue";
 
 function App() {
   const userInfo = {
@@ -32,6 +34,7 @@ function App() {
         <Route path="/" element={<NewsWall />}/>
         <Route path="/news/:slug" element={<SportsNews />}/>
         <Route path="news/category/:category" element={<CategoryNews />}/>
+        <Route path="search/:value" element={<SearchValue />} />
 
         </Route>
 

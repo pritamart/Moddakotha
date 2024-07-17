@@ -254,7 +254,7 @@ class newsController {
       ]);
 
       const news = {};
-      category_news.forEach(category => {
+      category_news.forEach((category) => {
         news[category.category] = category.news;
       });
       return res.status(200).json({ news });
@@ -268,7 +268,7 @@ class newsController {
     try {
       const categories = await newsModel.aggregate([
         {
-          $match: { status: "active" }  // Adjust the field name and value to match your schema
+          $match: { status: "active" }, // Adjust the field name and value to match your schema
         },
         {
           $group: {
@@ -302,10 +302,7 @@ class newsController {
 
       const relateNews = await newsModel
         .find({
-          $and: [
-            { slug: { $ne: slug } },
-            { category: { $eq: news.category } },
-          ],
+          $and: [{ slug: { $ne: slug } }, { category: { $eq: news.category } }],
         })
         .limit(4)
         .sort({ createdAt: -1 });
@@ -370,7 +367,9 @@ class newsController {
       if (news.length === 0) {
         console.log("No news found for category:", decodedCategory);
       } else {
-        console.log(`Found ${news.length} news articles for category: ${decodedCategory}`);
+        console.log(
+          `Found ${news.length} news articles for category: ${decodedCategory}`
+        );
       }
 
       return res.status(200).json({ news });
@@ -380,19 +379,22 @@ class newsController {
     }
   };
   news_search = async (req, res) => {
-    const { value } = req.query
-    try {
-        const news = await newsModel.find({
-            status: 'active',
-            $text: {
-                $search: value
-            }
-        })
-        return res.status(201).json({ news })
-    } catch (error) {
-        return res.status(500).json({ message: 'Internal server error' })
+    const { value } = req.query;
+    if (!value) {
+      return res.status(400).json({ message: "Search value is required" });
     }
-}
+
+    try {
+      const news = await newsModel.find({
+        status: "active",
+        $text: { $search: value },
+      });
+      return res.status(200).json({ news });
+    } catch (error) {
+      console.error(`Error during search: ${error.message}`);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  };
 }
 
 module.exports = new newsController();

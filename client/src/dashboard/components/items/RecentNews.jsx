@@ -4,7 +4,7 @@ import { base_url } from '../../../config/config';
 import NewsCard from './NewsCard';
 import { Link } from 'react-router-dom';
 
-const RecentNews = () => {
+const RecentNews = ({type}) => {
     const [latestNews, setLatestNews] = useState([]);
     useEffect(() => {
         const fetchLatestNews = async () => {
@@ -18,9 +18,9 @@ const RecentNews = () => {
         fetchLatestNews();
       }, []);
   return (
-<div className="grid grid-cols-1 gap-y-4 pt-3">
+<div className="grid grid-cols-1 gap-y-4 pt-3}"> 
 {latestNews?.slice(0,4).map((r, i) => (
-  <Link key={i} to={"#"} className="flex w-full">
+  <Link key={i} to={"#"} className={`flex w-full ${type === 'search' ? 'bg-white' : ''}`}>
     <div className="group relative overflow-hidden w-[90px] h-[75px]">
       <div className="w-full h-full group-hover:scale-[1.1] transition-all duration-[1s] relative">
         <img

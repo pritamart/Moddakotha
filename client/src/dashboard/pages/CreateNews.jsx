@@ -31,6 +31,7 @@ const CreateNews = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
+    
     formData.append("description", description);
     formData.append("image", image);
     try {

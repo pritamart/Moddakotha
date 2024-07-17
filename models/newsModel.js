@@ -47,4 +47,13 @@ const newsSchema = new Schema(
   },
   { timestamps: true }
 );
+newsSchema.index({
+  title: 'text',
+  category: 'text',
+  description: 'text'
+}, {
+  title: 5,
+  description: 4,
+  category: 2
+})
 module.exports = model("news", newsSchema);

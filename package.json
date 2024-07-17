@@ -27,6 +27,7 @@
     "mongoose": "^8.4.1",
     "react-helmet": "^6.1.0",
     "react-html-parser": "^2.0.2",
+    "react-loading-skeleton": "^3.4.0",
     "react-multi-carousel": "^2.8.5",
     "react-spinners-components": "^2.0.4"
   },

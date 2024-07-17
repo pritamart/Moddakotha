@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Breadcrumb = ({one,two}) => {
+const Breadcrumb = ({ one, two }) => {
   return (
     <div className="flex" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -38,13 +39,12 @@ const Breadcrumb = ({one,two}) => {
                 d="m1 9 4-4-4-4"
               />
             </svg>
-            <span
-              to="#"
-              className="ms-1 text-sm font-medium text-red-500 hover:text-red-700
-               md:ms-2 dark:text-red-500 dark:hover:text-red-700"
+            <Link
+              to={`/news/category/${one}`}
+              className="ms-1 text-sm font-medium text-red-500 hover:text-red-700 md:ms-2 dark:text-red-500 dark:hover:text-red-700"
             >
               {one}
-            </span>
+            </Link>
           </div>
         </li>
         <li aria-current="page">

@@ -64,7 +64,7 @@ const CategoryNews = () => {
             <div className="w-full xl:w-4/12">
               <div className="w-full pl-0 xl:pl-4">
                 <div className="flex flex-col gap-y-8">
-                  <Search />
+                  {/* <Search /> */}
                   <div className="w-full flex flex-col gap-y-[14px] bg-white pt-4">
                     <div className="pl-4">
                       <Title title="Recent news" />
