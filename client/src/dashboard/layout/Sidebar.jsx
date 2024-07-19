@@ -145,7 +145,7 @@ const Sidebar = () => {
         </li>
         {/* profile  */}
 
-        <li>
+        {/* <li>
           <Link
             to="/dashboard/profile"
             className={`px-3 ${
@@ -160,7 +160,7 @@ const Sidebar = () => {
             </span>
             <span>Profile</span>
           </Link>
-        </li>
+        </li> */}
          {/* Logout  */}
         <li>
           <div onClick={logout}

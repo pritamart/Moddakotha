@@ -11,6 +11,8 @@ router.post('/api/images/add', middleware.auth, newsControllers.add_images);
 router.get('/api/news', middleware.auth, newsControllers.get_dashboard_news);
 router.get('/api/news/:news_id', middleware.auth, newsControllers.get_dashboard_single_news);
 router.delete('/api/news/delete/:news_id', middleware.auth, newsControllers.delete_news);
+router.get('/api/all/status', newsControllers.get_statuscount);
+
 
 // Website endpoints
 router.get('/api/all/news', newsControllers.get_all_news);
@@ -21,5 +23,6 @@ router.get('/api/categorynews/news/:category', newsControllers.get_categorynews)
 router.get('/api/details/news/:slug', newsControllers.get_news);
 router.get('/api/category/all', newsControllers.get_categories);
 router.get('/api/search/news', newsControllers.news_search);
+router.get('/api/search/old/news', newsControllers.news_old_search);
 
 module.exports = router;

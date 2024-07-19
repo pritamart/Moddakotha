@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HeadLine from "../../components/HeadLine";
-import Footer from "../../components/Footer";
 import LatestNews from "../../components/items/LatesNews";
 import Title from "../../components/items/Title";
 import SimpleNewsCard from "../../components/items/SimpleNewsCard";
@@ -14,19 +13,53 @@ import { base_url } from "../../../config/config";
 
 const NewsWall = () => {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true); // State to manage loading state
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const { data } = await axios.get(`${base_url}/api/all/news`);
-        setNews(data.news);
+        // Simulate a 5-second loading delay
+        setTimeout(async () => {
+          const { data } = await axios.get(`${base_url}/api/all/news`);
+          setNews(data.news);
+          setLoading(false); // Set loading to false after data is fetched
+        }, 1000); // Simulate loading for 5 seconds
       } catch (error) {
         console.error("Error fetching news:", error);
+        setLoading(false); // Set loading to false in case of error as well
       }
     };
 
     fetchNews();
   }, []);
+
+  if (loading) {
+    // Display a loader while fetching data
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <svg
+          className="animate-spin h-10 w-10 text-red-500"
+           xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.003 8.003 0 0112 4.536v3.537l2.146-2.146a8.014 8.014 0 011.414 10.708l-1.484 1.485a9.972 9.972 0 00-1.384-12.669l1.481-1.481A10.014 10.014 0 0112 2.3V5.82l-2.146 2.146a8.014 8.014 0 01-3.654 6.283z"
+          ></path>
+        </svg>
+      </div>
+    );
+  }
 
   return (
     <div>

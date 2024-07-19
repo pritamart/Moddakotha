@@ -2,7 +2,7 @@ import React from 'react'
 
 const WriterIndex = () => {
   return (
-    <div>WriterIndex</div>
+    <div>Moddakotha</div>
   )
 }
 

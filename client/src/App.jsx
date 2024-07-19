@@ -20,6 +20,7 @@ import SportsNews from "./dashboard/pages/app/SportsNews";
 import CategoryNews from "./dashboard/pages/app/CategoryNews";
 import SearchNews from "./dashboard/components/news/SearchNews";
 import SearchValue from "./dashboard/components/items/SearchValue";
+import ArchiveNews from "./dashboard/components/news/ArchiveNews";
 
 function App() {
   const userInfo = {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<Layout />}>
         <Route path="/" element={<NewsWall />}/>
         <Route path="/news/:slug" element={<SportsNews />}/>
+        <Route path="/news/ArchiveNews" element={<ArchiveNews />}/>
         <Route path="news/category/:category" element={<CategoryNews />}/>
         <Route path="search/:value" element={<SearchValue />} />
 

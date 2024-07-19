@@ -1,11 +1,12 @@
 import React from "react";
 import moment from "moment";
 import "moment/locale/bn";
-import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaYoutube, FaArchive } from "react-icons/fa";
 import bg_header from "../../assets/header-bg.jpg";
 import adver_image from "../../assets/sample-add.jpg";
 import logo from "../../assets/logo.png";
 import Header_Category from "./Header_Category";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   moment.locale("bn");
@@ -34,8 +35,16 @@ const Header = () => {
       <div className="px-5 lg:px-8 flex justify-between items-center bg-[#333333] text-[#cccccc]">
         <span className="text-[11px] font-medium">
           {moment().format("LL, dddd")}
+        
         </span>
+       
         <div className="flex gap-x-[1px]">
+        <Link
+            to="/news/ArchiveNews"
+            className="w-[100px] h-[37px] flex justify-between px-3 items-center bg-[#ffffff2b]"
+          >
+           <span>Archive</span>  <FaArchive />
+          </Link>
           <a
             to="#"
             className="w-[37px] h-[37px] flex justify-center items-center bg-[#ffffff2b]"

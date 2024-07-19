@@ -8,6 +8,56 @@ const {
 const moment = require("moment");
 
 class newsController {
+
+   get_statuscount = async (req, res) => {
+    try {
+        const statuscount = await newsModel.aggregate([
+            {
+                $group: {
+                    _id: "$status",
+                    count: { $sum: 1 },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    status: "$_id",
+                    count: 1,
+                },
+            },
+        ]);
+
+        // Initialize default counts
+        let total_count = 0;
+        let active_count = 0;
+        let deactive_count = 0;
+        let pending_count = 0;
+
+        // Process the aggregation result
+        statuscount.forEach(item => {
+            total_count += item.count;
+            if (item.status === 'active') {
+                active_count = item.count;
+            } else if (item.status === 'deactive') {
+                deactive_count = item.count;
+            } else if (item.status === 'pending') {
+                pending_count = item.count;
+            }
+        });
+
+        // Format the final output
+        const result = [total_count, active_count, deactive_count, pending_count];
+
+        return res.status(200).json(result);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+
+
   add_news = async (req, res) => {
     const { id, category, name } = req.userInfo;
     const form = formidable({});
@@ -395,6 +445,34 @@ class newsController {
       return res.status(500).json({ message: "Internal server error" });
     }
   };
-}
 
+   news_old_search = async (req, res) => {
+    const { value } = req.query;
+    if (!value) {
+      return res.status(400).json({ message: "Search date is required" });
+    }
+  
+    // Convert the date to the format used in the database
+    const formattedDate = new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(new Date(value));
+  
+    try {
+      // Use a regex search to match the formatted date
+      const news = await newsModel.find({
+        status: "deactive",
+        date: { $regex: new RegExp(`^${formattedDate}$`, 'i') }
+      });
+  
+      return res.status(200).json({ news });
+    } catch (error) {
+      console.error(`Error during search: ${error.message}`);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  };
+  
+  
+}
 module.exports = new newsController();
