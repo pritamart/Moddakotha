@@ -21,6 +21,7 @@ import CategoryNews from "./dashboard/pages/app/CategoryNews";
 import SearchNews from "./dashboard/components/news/SearchNews";
 import SearchValue from "./dashboard/components/items/SearchValue";
 import ArchiveNews from "./dashboard/components/news/ArchiveNews";
+import View_news from "./dashboard/pages/View_news";
 
 function App() {
   const userInfo = {
@@ -55,6 +56,9 @@ function App() {
               <Route path="unable-access" element={<Unable/>} />
               <Route path="news" element={<News />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="news/view/:news_id" element={<View_news />} />
+
+
 
               {/* for admin only */}
               <Route path="" element={<ProtectRole role='admin' />} >

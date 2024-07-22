@@ -235,7 +235,9 @@ const NewsContent = () => {
                   )}
                   <td className="px-6 py-4">
                     <div className="flex justify-start items-center gap-x-4 text-white">
-                      <Link className="p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50">
+                      <Link 
+                      to={`/dashboard/news/view/${n._id}`}
+                      className="p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50">
                         <FaEye />
                       </Link>
                       {store?.userInfo?.role === "writer" && (
