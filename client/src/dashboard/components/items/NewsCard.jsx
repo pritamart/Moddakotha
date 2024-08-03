@@ -22,7 +22,7 @@ const NewsCard = ({ item }) => {
           to={`/news/${item?.slug}`}
           className="text-sm font-semibold text-[#333333] hover:text-[#c80000]"
         >
-          {item?.title}
+          {item?.title.slice(0, 85)}...
         </Link>
         <div className="flex gap-x-2 text-xs font-normal text-slate-600">
           <span>{item?.date}</span>

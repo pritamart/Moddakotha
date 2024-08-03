@@ -35,7 +35,7 @@ const RecentNews = ({type}) => {
       <Link to={`/news/${r?.slug}`}>
       
       <h2  className="text-xs font-semibold text-white hover:text-[#c80000]">
-        {r.title}
+        {r.title.slice(0, 85)}...
       </h2>
       </Link>
       <div className="flex gap-x-2 text-xs font-normal text-white">
