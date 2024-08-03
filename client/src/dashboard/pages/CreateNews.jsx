@@ -7,6 +7,7 @@ import { base_url } from "../../config/config";
 import axios from "axios";
 import storeContext from "../../context/storeContext";
 import toast from "react-hot-toast";
+import AdSense from "../components/AdSense";
 
 const CreateNews = () => {
   const { store } = useContext(storeContext);
@@ -31,7 +32,6 @@ const CreateNews = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
-    
     formData.append("description", description);
     formData.append("image", image);
     try {
@@ -50,7 +50,6 @@ const CreateNews = () => {
   };
 
   const [images, setImages] = useState([]);
-  
 
   const get_images = async () => {
     try {
@@ -59,42 +58,77 @@ const CreateNews = () => {
           Authorization: `Bearer ${store.token}`,
         },
       });
-      setImages(data.images)
+      setImages(data.images);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-  useEffect(()=>{
-      get_images()
-  },[])
-  const [imageLoader,setImageLoader] = useState(false)
-  const imageHandeler = async(e)=>{
-    const files = e.target.files
+  useEffect(() => {
+    get_images();
+  }, []);
+
+  const [imageLoader, setImageLoader] = useState(false);
+  const imageHandeler = async (e) => {
+    const files = e.target.files;
     try {
-      const formData = new FormData()
-      // console.log(files.length)
-      for(let i = 0;i < files.length; i++){
-        formData.append('images',files[i])
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append("images", files[i]);
       }
-      setImageLoader(true)
-      const { data } = await axios.post(`${base_url}/api/images/add`,formData, {
-        headers: {
-          Authorization: `Bearer ${store.token}`,
-        },
-      });
-      setImageLoader(false)
+      setImageLoader(true);
+      const { data } = await axios.post(
+        `${base_url}/api/images/add`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+          },
+        }
+      );
+      setImageLoader(false);
 
-      setImages([...images,data.images])
-      
-      toast.success(data.message)
+      setImages([...images, data.images]);
+
+      toast.success(data.message);
     } catch (error) {
-      console.log(error)
-      setImageLoader(false)  
-      toast.error(error.response.data.message)
-
+      console.log(error);
+      setImageLoader(false);
+      toast.error(error.response.data.message);
     }
-  }
+  };
 
+  // Function to insert HTML content into the editor and move cursor to the end
+  const insertTextIntoEditor = (html) => {
+    if (editor.current) {
+      const editorInstance = editor.current;
+      const currentContent = editorInstance.value;
+
+      // Append the HTML content and set the new content
+      editorInstance.value = `${currentContent}${html}`;
+      setDescription(editorInstance.value);
+
+      // Move cursor to the end
+      editorInstance.selection.setCursor(editorInstance.selection.getLength());
+    }
+  };
+
+  const handleAdSenseInsert = () => {
+    const adSenseHtml = `
+      <div class="mt-4">
+        <div class="adsense-container">
+          <!-- Replace this comment with the actual AdSense code if needed -->
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1874335055795370",
+              enable_page_level_ads: true
+            });
+          </script>
+        </div>
+      </div>
+    `;
+    insertTextIntoEditor(adSenseHtml);
+  };
 
   return (
     <div className="bg-white rounded-md">
@@ -102,8 +136,7 @@ const CreateNews = () => {
         <h2 className="text-xl font-medium"> Add News</h2>
 
         <Link
-          className="px-3 py-[6x] bg-purple-500 rounded-sm
-               text-white hover:bg-purple-600"
+          className="px-3 py-[6px] bg-purple-500 rounded-sm text-white hover:bg-purple-600"
           to="/dashboard/news"
         >
           News
@@ -112,10 +145,7 @@ const CreateNews = () => {
       <div className="p-4">
         <form onSubmit={added}>
           <div className="flex flex-col gap-y-2 mb-6">
-            <label
-              className="text-md font-medium text-gray-600"
-              htmlFor="title"
-            >
+            <label className="text-md font-medium text-gray-600" htmlFor="title">
               Title
             </label>
             <input
@@ -133,8 +163,7 @@ const CreateNews = () => {
             <div>
               <label
                 htmlFor="img"
-                className={`w-full h-[350px] flex rounded text-[#404040]
-          gap-2 justify-center items-center cursor-pointer border-2 border-dashed`}
+                className={`w-full h-[350px] flex rounded text-[#404040] gap-2 justify-center items-center cursor-pointer border-2 border-dashed`}
               >
                 {img ? (
                   <img src={img} alt="image" className="h-full" />
@@ -160,12 +189,22 @@ const CreateNews = () => {
           <div className="flex flex-col gap-y-2 mb-6">
             <div className="flex flex-col gap-y-2 mb-6">
               <div className="flex justify-start items-start gap-x-2">
-                <h2>Description</h2>
+                <h2>Ads images</h2>
                 <div onClick={() => setShow(true)}>
                   <span className="text-2xl cursor-pointer">
                     <MdCloudUpload />
                   </span>
                 </div>
+              </div>
+              
+              <div className="flex justify-start items-start gap-x-2">
+                <button
+                  type="button"
+                  onClick={handleAdSenseInsert}
+                  className="px-3 py-[6px] bg-purple-500 rounded-sm text-white hover:bg-purple-600"
+                >
+                  Add AdSense
+                </button>
               </div>
               <div>
                 <JoditEditor
@@ -181,8 +220,7 @@ const CreateNews = () => {
             <div className="mt-2">
               <button
                 disabled={loader}
-                className="px-3 py-[6px] bg-purple-500 rounded-sm
-               text-white hover:bg-purple-600"
+                className="px-3 py-[6px] bg-purple-500 rounded-sm text-white hover:bg-purple-600"
               >
                 {loader ? "Loading..." : "Add News"}
               </button>
@@ -190,11 +228,16 @@ const CreateNews = () => {
           </div>
         </form>
       </div>
-      <input className="hidden" onChange={imageHandeler} type="file" multiple id="images" />
+      <input
+        className="hidden"
+        onChange={imageHandeler}
+        type="file"
+        multiple
+        id="images"
+      />
       {show && <Galler setShow={setShow} images={images} />}
     </div>
   );
 };
 
 export default CreateNews;
-

@@ -1,42 +1,38 @@
-import React, { useEffect } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import AdsComponent from "./AdsComponent"; // adjust the path as necessary
 
-const AdsComponent = ({ dataAdSlot }) => {
-
-  useEffect(() => {
-    // Check if the Google AdSense script is already loaded
-    if (window.adsbygoogle && window.adsbygoogle.length > 0) {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.error("Adsense error", e);
-      }
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-      script.async = true;
-      script.crossOrigin = "anonymous";
-      script.setAttribute('data-ad-client', 'ca-pub-1874335055795370'); // Your AdSense client ID
-      document.head.appendChild(script);
-      script.onload = () => {
-        try {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-          console.error("Adsense error", e);
-        }
-      };
-    }
-  }, []);
-
+const NewsCard = ({ item }) => {
   return (
-    <ins 
-      className="adsbygoogle"
-      style={{ display: "block" }}
-      data-ad-client="ca-pub-1874335055795370" // Your AdSense client ID
-      data-ad-slot={dataAdSlot}
-      data-ad-format="auto"
-      data-full-width-responsive="true">
-    </ins>
+    <div className="bg-white shadow flex flex-col p-4">
+      <div className="relative group overflow-hidden h-full">
+        <div className="group-hover:scale-[1.1] transition-all duration-[1s] w-[100px] md:w-[160px] h-[93px] lg:w-[100px] relative">
+          <img
+            className="absolute inset-0 w-full h-full object-cover"
+            src={item?.image}
+            alt="News"
+          />
+          <div className="w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300"></div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-y-1 w-[calc(100%-100px)] md:w-[calc(100%-160px)] lg:w-[calc(100%-100px)] pl-3">
+        <Link to={`/news/category/${item?.category}`} className="text-sm font-semibold text-[#c80000]">
+          {item?.category}
+        </Link>
+        <Link
+          to={`/news/${item?.slug}`}
+          className="text-sm font-semibold text-[#333333] hover:text-[#c80000]"
+        >
+          {item?.title.slice(0, 85)}...
+        </Link>
+        <div className="flex gap-x-2 text-xs font-normal text-slate-600">
+          <span>{item?.date}</span>
+          <span>{item?.writerName}</span>
+        </div>
+      </div>
+      
+    </div>
   );
 };
 
-export default AdsComponent;
+export default NewsCard;
