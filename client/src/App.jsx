@@ -22,6 +22,7 @@ import SearchNews from "./dashboard/components/news/SearchNews";
 import SearchValue from "./dashboard/components/items/SearchValue";
 import ArchiveNews from "./dashboard/components/news/ArchiveNews";
 import View_news from "./dashboard/pages/View_news";
+import AdSense from "./dashboard/components/AdSense";
 
 function App() {
   const userInfo = {
@@ -46,6 +47,7 @@ function App() {
 
           
           <Route path="/login" element={<Login />} />
+          <Route path="/ad" element={<AdSense />} />
 
           <Route path="/dashboard" element={<ProtectDashboatd />}>
             <Route path="" element={<MainLayout />}>

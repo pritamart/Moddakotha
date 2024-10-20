@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const AdSense = ({ pId }) => {
+const AdSense = ({ pId, slot, placeholderImage }) => {
   const [adFailed, setAdFailed] = useState(false);
 
   useEffect(() => {
@@ -8,11 +8,10 @@ const AdSense = ({ pId }) => {
     script.async = true;
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pId}`;
     script.crossOrigin = "anonymous";
-
+    
     script.onload = () => {
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-        console.log("Ad script loaded successfully.");
       } catch (error) {
         console.log("Ad script error:", error.message);
         setAdFailed(true);
@@ -32,24 +31,24 @@ const AdSense = ({ pId }) => {
   }, [pId]);
 
   return (
-    <>
+    <div style={{ textAlign: "center", margin: "auto" }}>
       {adFailed ? (
         <img
-          src="https://via.placeholder.com/1200x600"
+          src={placeholderImage}
           alt="Placeholder"
           style={{ width: "100%", height: "auto" }}
         />
       ) : (
         <ins
           className="adsbygoogle"
-          style={{ display: "block" }}
+          style={{ display: "block", width: "100%", height: "auto" }}
           data-ad-client={`ca-pub-${pId}`}
-          data-ad-slot="3153382277" // Replace with your actual ad slot
+          data-ad-slot={slot}
           data-ad-format="auto"
           data-full-width-responsive="true"
-        ></ins>
+        />
       )}
-    </>
+    </div>
   );
 };
 

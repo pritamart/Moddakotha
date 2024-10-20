@@ -6,7 +6,7 @@ import { base_url } from "../../config/config";
 import storeContext from "../../context/storeContext";
 
 const AddWriter = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { store } = useContext(storeContext);
 
   const [state, setState] = useState({
@@ -33,14 +33,14 @@ const AddWriter = () => {
         {
           headers: {
             Authorization: `Bearer ${store.token}`,
-          }
+          },
         }
       );
-      setLoader(false)
-      toast.success(data.message)
-      navigate('/dashboard/writers')
+      setLoader(false);
+      toast.success(data.message);
+      navigate("/dashboard/writers");
     } catch (error) {
-      setLoader(false)
+      setLoader(false);
 
       toast.error(error.response.data.message);
       console.log(error);
@@ -99,12 +99,25 @@ const AddWriter = () => {
                           focus:border-green-500 h-10"
               >
                 <option>---Select Category---</option>
-                <option value="Education">Education</option>
+                {/* <option value="Education">Education</option>
                 <option value="Travel">Travel</option>
                 <option value="Health">Health</option>
-                <option value="International">International</option>
-                <option value="Sports">Sports</option>
-                <option value="Technology">Technology</option>
+                <option value="International">International</option> */}
+                {/* <option value="Sports">Sports</option> */}
+                {/* <option value="Technology">Technology</option> */}
+                
+
+                <option value="ত্রিপুরা">ত্রিপুরা</option> {/* new */}
+                <option value="দেশ">দেশ</option>  {/* International*/}
+                <option value="বানিজ্য">বানিজ্য</option> {/*Travel*/}
+                <option value="ম্যাগরোল">ম্যাগরোল</option> {/*Health*/}
+                <option value="খেলা">খেলা</option> {/* sports*/}
+                <option value="পড়াশুনা">পড়াশুনা</option> {/* Education*/}
+                <option value="টেক">টেক</option> {/*Technology*/}
+                <option value="সম্পাদকীয়">সম্পাদকীয়</option> {/*Technology*/}
+                <option value="স্বাস্থ্য">স্বাস্থ্য</option> {/*স্বাস্থ্য*/}
+                
+                
               </select>
             </div>
           </div>
@@ -151,11 +164,12 @@ const AddWriter = () => {
             </div>
           </div>
           <div className="mt-4">
-            <button draggable={loader}
+            <button
+              draggable={loader}
               className="px-3 py-[6px] bg-indigo-500 rounded-lg
                text-white hover:bg-indigo-600"
             >
-             {loader ? 'Loading...':'Add Writer'}
+              {loader ? "Loading..." : "Add Writer"}
             </button>
           </div>
         </form>

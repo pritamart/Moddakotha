@@ -114,21 +114,37 @@ const CreateNews = () => {
 
   const handleAdSenseInsert = () => {
     const adSenseHtml = `
-      <div class="mt-4">
-        <div class="adsense-container">
-          <!-- Replace this comment with the actual AdSense code if needed -->
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-1874335055795370",
-              enable_page_level_ads: true
-            });
-          </script>
-        </div>
+      <div class="mt-4 adsense-container">
+        <p></p>
+        <div class="adsense-placeholder" data-ad-client="ca-pub-1874335055795370" data-ad-slot="your-ad-slot"></div>
       </div>
     `;
     insertTextIntoEditor(adSenseHtml);
   };
+
+  const loadAdSenseScript = () => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.onload = () => {
+      const placeholders = document.querySelectorAll(".adsense-placeholder");
+      placeholders.forEach((placeholder) => {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          console.error("Ad script error:", error.message);
+        }
+      });
+    };
+    script.onerror = () => {
+      console.error("Ad script failed to load.");
+    };
+    document.body.appendChild(script);
+  };
+
+  useEffect(() => {
+    loadAdSenseScript();
+  }, [description]); // Add `description` as a dependency to re-run the effect when the content changes
 
   return (
     <div className="bg-white rounded-md">
@@ -197,7 +213,7 @@ const CreateNews = () => {
                 </div>
               </div>
               
-              <div className="flex justify-start items-start gap-x-2">
+              {/* <div className="flex justify-start items-start gap-x-2">
                 <button
                   type="button"
                   onClick={handleAdSenseInsert}
@@ -205,7 +221,7 @@ const CreateNews = () => {
                 >
                   Add AdSense
                 </button>
-              </div>
+              </div> */}
               <div>
                 <JoditEditor
                   ref={editor}

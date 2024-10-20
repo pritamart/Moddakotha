@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo3.png";
 import { Link, useLocation } from "react-router-dom";
 import Category from "./items/Category";
 import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -33,17 +33,17 @@ const Footer = () => {
     <div className="w-full bg-[#1e1919]">
       <div className="px-4 md:px-8 py-10 gap-12 grid lg:grid-cols-4 grid-cols-1">
         <div className="flex flex-col gap-y-[14px] items-center justify-center">
-          <div className="relative h-[75px] w-[200px]">
+          <div className="relative h-[200px] w-[200px]">
             <img src={Logo} alt="Logo" className="object-contain" />
           </div>
-          <h4 className="text-slate-300 font-semibold text-center">
+          {/* <h4 className="text-slate-300 font-semibold text-center">
             ‘মোদ্দাকথা’ নামটি শুধুমাত্র সংবাদ মাধ্যমের জন্য আমরা যে নাম দিয়েছি
             তা নয়, আমরা এই নামটি দিয়েছি সমাজের প্রতিটি কোণ, প্রতিটি শ্রেণি,
             প্রতিটি পদক্ষেপকে ফোকাস করার জন্য। আমরা সত্য উপস্থাপন করতে সর্বদা
             প্রস্তুত। আমরা নিরপেক্ষ নই, আমরা সত্যের প্রতি পক্ষপাতদুষ্ট।
-          </h4>
-          <h4 className="text-slate-300">
-            আমাদের সাথে যোগাযোগ করুন: info@moddhakotha.in /
+          </h4> */}
+          <h4 className="text-slate-300 p-8">
+            আমাদের সাথে যোগাযোগ করুন: <br />info@moddhakotha.in /
             moddhakotha@gmail.com
           </h4>
         </div>
