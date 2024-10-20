@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/bn";
-import { FaFacebook, FaTwitter, FaYoutube, FaArchive } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaYoutube,
+  FaArchive,
+  FaWhatsapp,
+} from "react-icons/fa";
 import logo from "../../assets/logo.png";
 import Header_Category from "./Header_Category";
 import { Link } from "react-router-dom";
@@ -77,19 +83,22 @@ const Header = () => {
             <span>Archive</span> <FaArchive />
           </Link>
           <a
-            href="#"
+            href="https://www.facebook.com/ModdaKothainfotain/"
             className="w-[37px] h-[37px] flex justify-center items-center bg-[#ffffff2b]"
           >
             <FaFacebook />
           </a>
           <a
-            href="#"
+            href={`https://wa.me/9863902074`}
             className="w-[37px] h-[37px] flex justify-center items-center bg-[#ffffff2b]"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <FaTwitter />
+            <FaWhatsapp />
           </a>
+
           <a
-            href="#"
+            href="https://www.youtube.com/@Moddakotha-Infotain"
             className="w-[37px] h-[37px] flex justify-center items-center bg-[#ffffff2b]"
           >
             <FaYoutube />

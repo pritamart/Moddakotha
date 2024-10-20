@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo3.png";
 import { Link, useLocation } from "react-router-dom";
 import Category from "./items/Category";
-import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaInbox,
+  FaPhone,
+  FaTwitter,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
 import axios from "axios";
 import { base_url } from "../../config/config";
 import Gallery from "./items/Gallery";
 import RecentNews from "./items/RecentNews";
-
 
 const Footer = () => {
   const location = useLocation();
@@ -43,12 +50,29 @@ const Footer = () => {
             প্রস্তুত। আমরা নিরপেক্ষ নই, আমরা সত্যের প্রতি পক্ষপাতদুষ্ট।
           </h4> */}
           <h4 className="text-slate-300 p-8">
-            আমাদের সাথে যোগাযোগ করুন: <br />info@moddhakotha.in /
-            moddhakotha@gmail.com
+            আমাদের সাথে যোগাযোগ করুন: <br />
+            <div className="flex items-center space-x-2 mt-2">
+              <FaPhone style={{ transform: "scaleX(-1)" }} />{" "}
+              {/* Mirrored phone icon */}
+              <a
+                href="tel:9863902074"
+                className="text-slate-300 hover:text-white"
+              >
+                9863902074
+              </a>
+            </div>
+            <div className="flex items-center space-x-2 mt-2">
+              <FaEnvelope />
+              <a
+                href="mailto:moddakotha@gmail.com"
+                className="text-slate-300 hover:text-white"
+              >
+                moddakotha@gmail.com
+              </a>
+            </div>
           </h4>
         </div>
-      <Gallery />
-      
+        <Gallery />
 
         <div>
           <Category categories={[]} titlestyle="text-white" />
@@ -57,7 +81,6 @@ const Footer = () => {
         <div className="flex flex-col gap-y-[14px]">
           <div className="text-xl font-bold text-white relative pl-3 before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:-left-0">
             Recent News
-           
           </div>
           {/* <div className="grid grid-cols-1 gap-y-4 pt-3">
             {news?.map((r, i) => (
@@ -100,19 +123,22 @@ const Footer = () => {
 
           <div className="flex gap-x-1">
             <a
-              href="#"
+              href=" https://www.youtube.com/@Moddakotha-Infotain"
               className="w-[37px] h-[37px] text-white flex justify-center items-center bg-[#ffffff2b]"
             >
               <FaFacebook />
             </a>
             <a
-              href="#"
+              href={`https://wa.me/9863902074`}
               className="w-[37px] h-[37px] text-white flex justify-center items-center bg-[#ffffff2b]"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <FaTwitter />
+              <FaWhatsapp />
             </a>
+
             <a
-              href="#"
+              href="https://www.facebook.com/ModdaKothainfotain/"
               className="w-[37px] h-[37px] text-white flex justify-center items-center bg-[#ffffff2b]"
             >
               <FaYoutube />
