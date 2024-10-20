@@ -187,8 +187,8 @@ const ArchiveNews = () => {
         )}
       </div>
       <PopularNews type="Recent news" />
-    </div>
-  );
+    </div> //lkojiojioj
+  ); 
 };
 
 export default ArchiveNews;
