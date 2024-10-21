@@ -100,7 +100,7 @@ const Header_Category = () => {
             className={`px-4 py-[5px] font-medium ${path === "/" ? "bg-[#00000026]" : ""}`}
             to="/"
           >
-            প্রবন্ধ
+            HOME
           </Link>
           {categories.length > 0 &&
             categories.map((c, i) => (
